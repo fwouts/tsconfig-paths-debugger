@@ -1,0 +1,12 @@
+{
+  "license": "MIT",
+  "scripts": {
+    "start": "patch-package && node main.js"
+  },
+  "dependencies": {
+    "tsconfig-paths": "^3.11.0"
+  },
+  "devDependencies": {
+    "patch-package": "^6.4.7"
+  }
+}

@@ -1,0 +1,18 @@
+diff --git a/node_modules/tsconfig-paths/lib/tsconfig-loader.js b/node_modules/tsconfig-paths/lib/tsconfig-loader.js
+index 726b68a..e7fd8b6 100644
+--- a/node_modules/tsconfig-paths/lib/tsconfig-loader.js
++++ b/node_modules/tsconfig-paths/lib/tsconfig-loader.js
+@@ -75,7 +75,12 @@ function loadTsconfig(configFilePath, existsSync, readFileSync) {
+     }
+     var configString = readFileSync(configFilePath);
+     var cleanedJson = StripBom(configString);
+-    var config = JSON5.parse(cleanedJson);
++    var config;
++    try {
++        config = JSON5.parse(cleanedJson);
++    } catch (e) {
++        throw new Error(`${configFilePath} is malformed ${e.message}`);
++    }
+     var extendedConfig = config.extends;
+     if (extendedConfig) {
+         if (typeof extendedConfig === "string" &&
